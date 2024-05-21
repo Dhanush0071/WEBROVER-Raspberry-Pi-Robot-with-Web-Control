@@ -43,9 +43,10 @@ WebRover is an innovative project that integrates modern technology components t
 ### 3. Installing Dependencies
 ```bash
 pip install flask opencv-python twilio RPi.GPIO python-socketio
-
-### 3. Running the application
+```
+### 4. Running the application
 ```bash
 git clone https://github.com/yourusername/WebRover.git
 cd WebRover
+```
 
