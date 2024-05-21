@@ -46,7 +46,7 @@ pip install flask opencv-python twilio RPi.GPIO python-socketio
 ```
 ### 4. Running the application
 ```bash
-git clone https://github.com/yourusername/WebRover.git
+git clone https://github.com/yourusername/WEBROVER-Raspberry-Pi-Robot-with-Web-Control.git
 cd WebRover
 ```
 
