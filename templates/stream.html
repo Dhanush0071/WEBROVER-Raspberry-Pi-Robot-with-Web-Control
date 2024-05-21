@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Stream</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+        }
+        h2 {
+            margin-bottom: 20px;
+        }
+        .stream-container {
+            display: flex;
+            width: 80%;
+            max-width: 1200px;
+            background: #fff;
+            border: 2px solid #ccc;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+        .video-feed {
+            flex: 1;
+            border-right: 2px solid #ccc;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        .controls {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        .controls button {
+            padding: 10px 20px;
+            margin: 10px;
+            border: none;
+            border-radius: 5px;
+            background: #333;
+            color: #fff;
+            cursor: pointer;
+        }
+        .controls button:hover {
+            background: #555;
+        }
+        .direction-controls {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+        }
+    </style>
+    <script>
+        function move(direction) {
+            fetch('/' + direction)
+                .then(response => response.text())
+                .then(data => console.log(data))
+                .catch(error => console.error('Error:', error));
+        }
+
+        document.addEventListener('keydown', function(event) {
+            switch(event.key) {
+                case 'ArrowUp':
+                    document.getElementById('up').click();
+                    break;
+                case 'ArrowDown':
+                    document.getElementById('down').click();
+                    break;
+                case 'ArrowRight':
+                    document.getElementById('right').click();
+                    break;
+                case 'ArrowLeft':
+                    document.getElementById('left').click();
+                    break;
+                case 'q':
+                    document.getElementById('stop').click();
+                    break;
+                default:
+                    break;
+            }
+        });
+    </script>
+</head>
+<body>
+    <h2>Stream</h2>
+    <div class="stream-container">
+        <div class="video-feed">
+            <img src="{{ url_for('video_feed') }}" alt="Video Stream">
+        </div>
+        <div class="controls">
+            <button id="up" onclick="move('up')">Up</button>
+            <div class="direction-controls">
+                <button id="left" onclick="move('left')">Left</button>
+                <button id="stop" onclick="move('stop')">Stop</button>
+                <button id="right" onclick="move('right')">Right</button>
+            </div>
+            <button id="down" onclick="move('down')">Down</button>
+        </div>
+    </div>
+</body>
+</html>
